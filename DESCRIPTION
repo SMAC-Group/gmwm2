@@ -1,13 +1,44 @@
 Package: gmwm2
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
-LinkingTo: Rcpp
-Imports: Rcpp
+Title: Generalized Method of Wavelet Moments
+Version: 0.0.1
+Date: 2018-05-23
+Authors@R: c(
+    person("Stephane", "Guerrier", email = "stef.guerrier@gmail.com", role = c("aut","cre","cph")),
+    person("James", "Balamuta", role = c("aut")),
+    person("Roberto", "Molinari", role = c("aut", "cph")),
+    person("Wenchao", "Yang", role = c("ctb"))
+    )
+URL: https://github.com/SMAC-Group/gmwm2
+BugReports: https://github.com/SMAC-Group/gmwm2/issues
+Description: Generalized Method of Wavelet Moments (GMWM) is an estimation
+    technique for the parameters of time series models. It uses the wavelet variance
+    in a moment matching approach that makes it particularly suitable for the
+    estimation of certain state-space models. Furthermore, there exists a robust
+    implementation of GMWM, which allows the robust estimation of some state-space
+    models and ARIMA models. Lastly, the package provides the ability to quickly
+    generate time series data, perform different wavelet decompositions, and
+    visualizations.
+License: AGPL-3
+Maintainer: Stephane Guerrier <stef.guerrier@gmail.com>
+Depends: 
+    R (>= 3.3),
+    ggplot2 (>= 2.1.0)
+Imports: 
+    Rcpp (>= 0.12.7),
+    scales,
+    grid,
+    reshape2,
+    utils,
+    stats,
+    methods,
+    graphics,
+    grDevices,
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+Suggests: 
+    imudata (>= 2.0.0)
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+SystemRequirements: C++11
