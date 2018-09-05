@@ -2149,3 +2149,162 @@ compare_eff = function(..., display.eff = T, order.eff = T, facet.label = NULL,
 
   } # end else
 }
+
+
+#' @export
+plotwvar = function(x, units = NULL, xlab = NULL, ylab = NULL, main = NULL,
+                     col_wv = NULL, col_ci = NULL, nb_ticks_x = NULL, nb_ticks_y = NULL,
+                     legend_position = NULL, ci_wv = NULL, point_cex = NULL,
+                     point_pch = NULL, ...){
+
+  # Labels
+  if (is.null(xlab)){
+    if (is.null(units)){
+      xlab = expression(paste("Scale ", tau, sep =""))
+    }else{
+      xlab = bquote(paste("Scale ", tau, " [", .(units), "]", sep = " "))
+    }
+  }
+
+  if (is.null(ylab)){
+    ylab = expression(paste("Wavelet Variance ", nu^2, sep = ""))
+  }else{
+    ylab = ylab
+  }
+
+  # Main Title
+  if (is.null(main)){
+    main = "Haar Wavelet Variance Representation"
+  }
+
+  # Line and CI colors
+  if (is.null(col_wv)){
+    col_wv = "darkblue"
+  }
+
+  if (is.null(col_ci)){
+    col_ci = hcl(h = 210, l = 65, c = 100, alpha = 0.2)
+  }
+
+  # Range
+  x_range = range(x$scales)
+  x_low = floor(log2(x_range[1]))
+  x_high = ceiling(log2(x_range[2]))
+
+  y_range = range(c(x$ci.low, x$ci.high))
+  y_low = floor(log10(y_range[1]))
+  y_high = ceiling(log10(y_range[2]))
+
+  # Axes
+  if (is.null(nb_ticks_x)){
+    nb_ticks_x = 6
+  }
+
+  if (is.null(nb_ticks_y)){
+    nb_ticks_y = 5
+  }
+
+  x_ticks = seq(x_low, x_high, by = 1)
+  if (length(x_ticks) > nb_ticks_x){
+    x_ticks = x_low + ceiling((x_high - x_low)/(nb_ticks_x + 1))*(0:nb_ticks_x)
+  }
+  x_labels = sapply(x_ticks, function(i) as.expression(bquote(2^ .(i))))
+
+  y_ticks <- seq(y_low, y_high, by = 1)
+  if (length(y_ticks) > nb_ticks_y){
+    y_ticks = y_low + ceiling((y_high - y_low)/(nb_ticks_y + 1))*(0:nb_ticks_y)
+  }
+  y_labels <- sapply(y_ticks, function(i) as.expression(bquote(10^ .(i))))
+
+  # Legend Position
+  if (is.null(legend_position)){
+    if (which.min(abs(c(y_low, y_high) - log2(x$wv.empir[1]))) == 1){
+      legend_position = "topleft"
+    }else{
+      legend_position = "bottomleft"
+    }
+  }
+
+  # Main Plot
+  plot(NA, xlim = x_range, ylim = y_range, xlab = xlab, ylab = ylab,
+       log = "xy", xaxt = 'n', yaxt = 'n', bty = "n", ann = FALSE)
+  win_dim = par("usr")
+
+  par(new = TRUE)
+  plot(NA, xlim = x_range, ylim = 10^c(win_dim[3], win_dim[4] + 0.09*(win_dim[4] - win_dim[3])),
+       xlab = xlab, ylab = ylab, log = "xy", xaxt = 'n', yaxt = 'n', bty = "n")
+  win_dim = par("usr")
+
+  # Add Grid
+  abline(v = 2^x_ticks, lty = 1, col = "grey95")
+  abline(h = 10^y_ticks, lty = 1, col = "grey95")
+
+  # Add Title
+  x_vec = 10^c(win_dim[1], win_dim[2], win_dim[2], win_dim[1])
+  y_vec = 10^c(win_dim[4], win_dim[4],
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]),
+               win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))
+  polygon(x_vec, y_vec, col = "grey95", border = NA)
+  text(x = 10^mean(c(win_dim[1], win_dim[2])), y = 10^(win_dim[4] - 0.09/2*(win_dim[4] - win_dim[3])), main)
+
+  # Add Axes and Box
+  lines(x_vec[1:2], rep(10^(win_dim[4] - 0.09*(win_dim[4] - win_dim[3])),2), col = 1)
+  #y_ticks = y_ticks[(2^y_ticks) < 10^(win_dim[4] - 0.09*(win_dim[4] - win_dim[3]))]
+  y_labels = y_labels[1:length(y_ticks)]
+  box()
+  axis(1, at = 2^x_ticks, labels = x_labels, padj = 0.3)
+  axis(2, at = 10^y_ticks, labels = y_labels, padj = -0.2)
+
+  # CI for WV
+  if (ci_wv == TRUE || is.null(ci_wv)){
+    polygon(c(x$scales, rev(x$scales)), c(x$ci.low, rev(x$ci.high)),
+            border = NA, col = col_ci)
+  }
+
+  # Add legend
+  CI_conf = 1 - x$alpha
+
+  if (x$robust == TRUE){
+    wv_title_part1 = "Empirical Robust WV "
+  }else{
+    wv_title_part1 = "Empirical WV "
+  }
+
+  if (!is.na(legend_position)){
+    if (legend_position == "topleft"){
+      legend_position = 10^c(1.1*win_dim[1], 0.98*(win_dim[4] - 0.09*(win_dim[4] - win_dim[3])))
+      legend(x = legend_position[1], y = legend_position[2],
+             legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
+                        as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")")))),
+             pch = c(16, 15), lty = c(1, NA), col = c(col_wv, col_ci), cex = 1, pt.cex = c(1.25, 3), bty = "n")
+    }else{
+      if (legend_position == "topright"){
+        legend_position = 10^c(0.7*win_dim[2], 0.98*(win_dim[4] - 0.09*(win_dim[4] - win_dim[3])))
+        legend(x = legend_position[1], y = legend_position[2],
+               legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
+                          as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")")))),
+               pch = c(16, 15), lty = c(1, NA), col = c(col_wv, col_ci), cex = 1, pt.cex = c(1.25, 3), bty = "n")
+      }else{
+        legend(legend_position,
+               legend = c(as.expression(bquote(paste(.(wv_title_part1), hat(nu)^2))),
+                          as.expression(bquote(paste("CI(",hat(nu)^2,", ",.(CI_conf),")")))),
+               pch = c(16, 15), lty = c(1, NA), col = c(col_wv, col_ci), cex = 1, pt.cex = c(1.25, 3), bty = "n")
+      }
+    }
+  }
+
+  # Add WV
+  lines(x$scales, x$wv.empir, type = "l", col = col_wv, pch = 16)
+
+  if (is.null(point_pch)){
+    point_pch = 16
+  }
+
+  if (is.null(point_cex)){
+    point_cex = 1.25
+  }
+  lines(x$scales, x$wv.empir, type = "p", col = col_wv, pch = point_pch, cex = point_cex)
+}
+
+
+

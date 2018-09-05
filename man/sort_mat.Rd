@@ -19,7 +19,7 @@ Sorts a given matrix by a specific column while retain the elements in each row.
 }
 \details{
 The functional difference between armadillo's sort() and sort_mat() is straight forward.
-sort() will sort each column without respect to the rows. 
+sort() will sort each column without respect to the rows.
 Using sort_matrix will sort only 1 column and retain the other elements to be in the same row.
 }
 \keyword{internal}

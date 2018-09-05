@@ -10,7 +10,7 @@ deriv_wn(tau)
 \item{tau}{A \code{vec} containing the scales e.g. \eqn{2^{\tau}}{2^tau}}
 }
 \value{
-A \code{matrix} with the first column containing 
+A \code{matrix} with the first column containing
 the partial derivative with respect to \eqn{\sigma^2}{sigma^2}.
 }
 \description{

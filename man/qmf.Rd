@@ -9,7 +9,7 @@ qmf(g, inverse)
 \arguments{
 \item{g}{A \code{vector} that contains the filter constants.}
 
-\item{inverse}{A \code{bool} that indicates whether the inverse quadrature mirror filter is computed. 
+\item{inverse}{A \code{bool} that indicates whether the inverse quadrature mirror filter is computed.
 By default, the inverse quadrature mirror is computed.}
 }
 \value{

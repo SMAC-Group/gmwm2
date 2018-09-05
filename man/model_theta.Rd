@@ -16,7 +16,7 @@ A \code{vec} with values initialized at 0 that span the space of parameters to b
 Creates the ts.model's theta vector
 }
 \details{
-This function currently does NOT support ARMA(P,Q) models. 
+This function currently does NOT support ARMA(P,Q) models.
 That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
 There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
 }

@@ -26,7 +26,7 @@ and is often called \emph{Rate Random Walk} in the engineering literature.
 
 \section{Generation Algorithm}{
 
-To generate we first obtain the standard deviation from the variance by taking a square root. Then, we 
+To generate we first obtain the standard deviation from the variance by taking a square root. Then, we
 sample \eqn{N} times from a \eqn{N(0,\sigma^2)}{N(0,sigma^2)} distribution. Lastly, we take the
 cumulative sum over the vector.
 }

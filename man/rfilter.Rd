@@ -21,12 +21,12 @@ Applies a recursive filter to a univariate time series.
 }
 \details{
 Note: The length of 'init' must be equal to the length of 'filter'.
-This is a port of the rfilter function harnessed by the filter function in stats. 
+This is a port of the rfilter function harnessed by the filter function in stats.
 It is about 6-7 times faster than R's base function. The benchmark was done on iMac Late 2013 using vecLib as the BLAS.
 }
 \examples{
 x = 1:15
-# 
+#
 rfilter(x, rep(1, 3), rep(1, 3))
 # Using R's function
 filter(x, rep(1, 3), method="recursive", init=rep(1, 3))

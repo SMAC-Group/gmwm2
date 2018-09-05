@@ -38,8 +38,8 @@ This function processes the decomposition of multiple signals quickly
 }
 \examples{
 x = cbind(rnorm(100),rnorm(100))
-batch_modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6, 
-                     alpha = 0.05, ci_type="eta3", strWavelet="haar", 
+batch_modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6,
+                     alpha = 0.05, ci_type="eta3", strWavelet="haar",
                      decomp="modwt")
 }
 \keyword{internal}

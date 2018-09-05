@@ -10,7 +10,7 @@ deriv_2nd_dr(tau)
 \item{tau}{A \code{vec} containing the scales e.g. \eqn{2^{\tau}}{2^tau}}
 }
 \value{
-A \code{matrix} with the first column containing 
+A \code{matrix} with the first column containing
 the second partial derivative with respect to \eqn{\omega}{omega}.
 }
 \description{
