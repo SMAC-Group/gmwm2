@@ -16,7 +16,7 @@ A \code{vector<string>} with a list of descriptive values to label the estimate 
 Creates the ts.model's process desc
 }
 \details{
-This function currently does NOT support ARMA(P,Q) models.
+This function currently does NOT support ARMA(P,Q) models. 
 That is, there is no support for ARMA(P,Q), AR(P), or MA(Q).
 There is support for ARMA11, AR1, MA1, GM, WN, DR, QN, and RW.
 }

@@ -16,7 +16,7 @@ A \code{vec} containing the ACF.
 Calculates the autovariance function (ACF) using Discrete Fourier Transformation.
 }
 \details{
-This implementation is 2x as slow as Rs.
+This implementation is 2x as slow as Rs. 
 Two issues: 1. memory resize and 2. unoptimized fft algorithm in arma.
 Consider piping back into R and rewrapping the object. (Decrease of about 10 microseconds.)
 }

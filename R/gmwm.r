@@ -874,6 +874,8 @@ predict.gmwm = function(object, data.in.gmwm, n.ahead = 1, ...){
 #' @template CommonParams
 #' @return A ggplot2 panel containing the graph of the empirical and theoretical wavelet variance under the constructed GMWM.
 #' @author JJB, Wenchao
+#' @importFrom reshape2 melt
+#' @importFrom scales trans_breaks trans_format math_format
 #' @examples
 #' # AR
 #' set.seed(1336)

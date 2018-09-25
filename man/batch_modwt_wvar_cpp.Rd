@@ -4,8 +4,8 @@
 \alias{batch_modwt_wvar_cpp}
 \title{Computes the MO/DWT wavelet variance for multiple processes}
 \usage{
-batch_modwt_wvar_cpp(signal, nlevels, robust, eff, alpha, ci_type, strWavelet,
-  decomp)
+batch_modwt_wvar_cpp(signal, nlevels, robust, eff, alpha, ci_type,
+  strWavelet, decomp)
 }
 \arguments{
 \item{signal}{A \code{matrix} that contains the same number of observations per dataset}
@@ -38,8 +38,8 @@ This function processes the decomposition of multiple signals quickly
 }
 \examples{
 x = cbind(rnorm(100),rnorm(100))
-batch_modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6,
-                     alpha = 0.05, ci_type="eta3", strWavelet="haar",
+batch_modwt_wvar_cpp(x, nlevels=4, robust=FALSE, eff=0.6, 
+                     alpha = 0.05, ci_type="eta3", strWavelet="haar", 
                      decomp="modwt")
 }
 \keyword{internal}

@@ -34,7 +34,7 @@ and \eqn{\sigma^2 \in {\rm I\!R}^{+}}{sigma^2 in R^{+}}. This process is defined
 \section{Generation Algorithm}{
 
 The function first generates a vector of white noise using \code{\link{gen_wn}} and then obtains the
-MA values under the above equation.
+MA values under the above equation. 
 
 The \eqn{X_0}{X[0]} (first value of \eqn{X_t}{X[t]}) is discarded.
 }

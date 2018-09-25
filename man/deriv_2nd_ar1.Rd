@@ -16,7 +16,7 @@ deriv_2nd_ar1(phi, sigma2, tau)
 \value{
 A \code{matrix} with the first column containing the
  second partial derivative with respect to \eqn{\phi}{phi} and
-  the second column contains the second partial derivative with
+  the second column contains the second partial derivative with 
   respect to \eqn{\sigma ^2}{sigma^2}
 }
 \description{

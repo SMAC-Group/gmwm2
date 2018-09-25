@@ -24,7 +24,7 @@ A \code{vec}
 Calculates the modeling score of a GMWM
 }
 \details{
-The equation is slightly different than that stated in the paper due to the bootstrap already incorporating in
+The equation is slightly different than that stated in the paper due to the bootstrap already incorporating in 
 N.
 }
 \keyword{internal}

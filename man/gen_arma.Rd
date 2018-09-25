@@ -39,9 +39,9 @@ This process is defined as:
 }
 
 \section{Generation Algorithm}{
-
+ 
 The innovations are generated from a normal distribution.
-The \eqn{\sigma^2} parameter is indeed a variance parameter.
+The \eqn{\sigma^2} parameter is indeed a variance parameter. 
 This differs from R's use of the standard deviation, \eqn{\sigma}.
 }
 

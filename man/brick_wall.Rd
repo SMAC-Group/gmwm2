@@ -20,7 +20,7 @@ A \code{field<vec>} with boundary modwt or dwt taken care of.
 Removes the first n wavelet coefficients.
 }
 \details{
-The vectors are truncated by removing the first n wavelet coefficients.
+The vectors are truncated by removing the first n wavelet coefficients. 
 These vectors are then stored into the field that is returned.
 Note: As a result, there are no NA's introduced and hence the na.omit is not needed.
 }

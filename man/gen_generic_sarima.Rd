@@ -4,7 +4,8 @@
 \alias{gen_generic_sarima}
 \title{Generate Generic Seasonal Autoregressive Order P - Moving Average Order Q (SARMA(p,q)x(P,Q)) Model}
 \usage{
-gen_generic_sarima(N, theta_values, objdesc, sigma2 = 1.5, n_start = 0L)
+gen_generic_sarima(N, theta_values, objdesc, sigma2 = 1.5,
+  n_start = 0L)
 }
 \arguments{
 \item{N}{An \code{integer} for signal length.}
@@ -27,7 +28,7 @@ Generate an ARMA(P,Q) process with supplied vector of Autoregressive Coefficient
 }
 \details{
 The innovations are generated from a normal distribution.
-The \eqn{\sigma^2} parameter is indeed a variance parameter.
+The \eqn{\sigma^2} parameter is indeed a variance parameter. 
 This differs from R's use of the standard deviation, \eqn{\sigma}.
 }
 \examples{
